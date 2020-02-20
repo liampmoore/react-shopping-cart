@@ -4,6 +4,7 @@ import data from './data';
 
 //Contexts
 import ProductContext from './contexts/ProductContext';
+import CartContext from './contexts/CartContext';
 
 // Components
 import Navigation from './components/Navigation';
@@ -19,6 +20,7 @@ function App() {
 	};
 
 	return (
+		<ProductContext.Provider value={{ products, addItem }}>
 		<div className="App">
 			<Navigation cart={cart} />
 
@@ -26,19 +28,15 @@ function App() {
 			<Route
 				exact
 				path="/"
-				render={() => (
-					<Products
-						products={products}
-						addItem={addItem}
-					/>
-				)}
+				component={Products}
 			/>
 
 			<Route
 				path="/cart"
-				render={() => <ShoppingCart cart={cart} />}
+				component={ShoppingCart}
 			/>
 		</div>
+		</ProductContext.Provider>
 	);
 }
 
