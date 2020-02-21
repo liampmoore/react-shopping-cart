@@ -19,7 +19,8 @@ function App() {
 		setCart([...cart, newItem])
 	};
 	const removeItem = item => {
-		setCart(cart.filter(currentItem => currentItem.id !== item.id))
+		console.log(item)
+		setCart(cart.filter(currentItem => currentItem.id !== item))
 	}
 
 	useEffect(() => {
@@ -27,8 +28,8 @@ function App() {
 	}, [cart])
 
 	return (
-		<ProductContext.Provider value={{ products, addItem, removeItem }}>
-			<CartContext.Provider value={cart}>
+		<ProductContext.Provider value={{ products, addItem }}>
+			<CartContext.Provider value={{cart, removeItem}}>
 		<div className="App">
 			<Navigation cart={cart} />
 
